@@ -10,4 +10,6 @@ Game Ideas
     calculator
     motocross
     duck life
-    
+
+
+get css and main content (placeholder images) and everything besides the actual games
