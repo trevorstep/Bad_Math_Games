@@ -51,4 +51,3 @@ Add proper form labeling and focus-visible styles.
 Remove duplicate stylesheet includes and consolidate shared CSS.
 Improve responsive nav behavior for tablet/medium widths.
 Clean dead selectors/empty markup and naming typos.
-GPT-5.3-Codex • 0.9x
