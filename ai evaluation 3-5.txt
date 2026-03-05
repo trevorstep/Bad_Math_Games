@@ -1,0 +1,54 @@
+High - Invalid HTML closing tag breaks link semantics
+index.html:28 uses </href> instead of </a>.
+Why it matters: Invalid markup can cause unpredictable parsing and assistive tech issues.
+Concrete fix: Replace with valid anchor markup, e.g. <a href="Page2.html">Take me to page 2</a>.
+
+High - Navigation is not semantic and has invalid list structure
+site_components/nav.html:3 uses <div id="nav"> instead of <nav>, and site_components/nav.html:10 places <div class="nav-links"> directly inside <ul> (only <li> should be direct children).
+Why it matters: Screen readers rely on landmarks/list semantics; invalid list structure reduces accessibility and maintainability.
+Concrete fix: Refactor to <nav aria-label="Main"> with <ul> containing only <li> items (wrap grouped links in li, not div).
+
+High - Dropdown menu is mouse-only (:hover) and not keyboard accessible
+css/index.css:93, css/index.css:97, css/Page2.css:97, css/Page2.css:101 only use hover behavior.
+Why it matters: Keyboard and switch users cannot reliably open/operate the Games submenu.
+Concrete fix: Support :focus-within in CSS and/or JS toggling via button (aria-expanded, aria-controls) with Enter/Space/Escape handling.
+
+High - Search input lacks an accessible label
+site_components/nav.html:26 and site_components/nav.html:27 include <input> with only placeholder text.
+Why it matters: Placeholder is not a label; many screen readers and users lose field purpose context.
+Concrete fix: Add <label for="site-search">Search games</label> plus id="site-search" and type="search".
+
+Medium - Duplicate CSS links and duplicate stylesheet bodies increase risk
+index.html:10 + index.html:20 and Page2.html:10 + Page2.html:19 include the same stylesheet twice; index.css and Page2.css are near-duplicates.
+Why it matters: Redundant loads and duplicated rules cause drift, harder debugging, and unnecessary bytes.
+Concrete fix: Keep one <link> per page in <head> and extract shared nav/base styles into a single shared file (e.g. css/base.css), with page-specific overrides only.
+
+Medium - Responsive strategy is fragile between 601px and tablet widths
+css/index.css:35 and css/Page2.css:39 use absolutely centered .nav-links; only one breakpoint at max-width:600 (css/index.css:134, css/Page2.css:138).
+Why it matters: On medium widths, links/search/login can overlap or crowd, hurting usability.
+Concrete fix: Replace absolute centering with flex/grid layout and add at least one additional breakpoint (e.g. ~768px) or a collapsible menu pattern.
+
+Medium - Missing focus-visible styling for interactive controls
+No :focus/:focus-visible rules exist in either stylesheet.
+Why it matters: Keyboard users may have weak/inconsistent focus indication, especially on custom-styled buttons/links.
+Concrete fix: Add explicit focus styles (e.g. outline: 2px solid #ffd54f; outline-offset: 2px;) for links, buttons, inputs, and dropdown items.
+
+Low - Unused/empty markup and dead selectors
+footer.html is empty; index.html:34 and Page2.html:52 have empty <footer>; .topnav a.active appears unused in both CSS (css/index.css:103, css/Page2.css:107); Page2.html:37 has typo Instuctions.
+Why it matters: Dead code/empty landmarks adds noise and confusion, slowing future work.
+Concrete fix: Remove unused selectors/empty elements until needed, or populate them with real content; rename IDs consistently (Instructions).
+
+Open Questions / Assumptions
+
+Assumed dropdown is intended to be a persistent nav feature for milestone release (not temporary prototype-only behavior).
+Assumed footer is meant to contain required site info later; if not, remove landmark for now to keep semantics clean.
+Could not fully verify color-contrast combinations under all states without rendered screenshots, but current palette looks mostly acceptable except potential bright-blue-on-white states if activated.
+Fix First This Week (Priority Order)
+
+Fix invalid HTML + semantic nav/list structure (index.html:28, site_components/nav.html:3, site_components/nav.html:10).
+Make dropdown keyboard accessible and add ARIA state management.
+Add proper form labeling and focus-visible styles.
+Remove duplicate stylesheet includes and consolidate shared CSS.
+Improve responsive nav behavior for tablet/medium widths.
+Clean dead selectors/empty markup and naming typos.
+GPT-5.3-Codex • 0.9x
