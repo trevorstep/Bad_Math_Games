@@ -5,55 +5,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Bad Math Games - A student web dev project parodying game sites. Features intentionally frustrating gameplay, incorrect math, and absurd physics. Play free browser-based parody games.">
-    <title>Bad Math Games</title>
+        content="Bad Math Games - Page 2. Explore more intentionally frustrating games and absurd physics.">
+    <title>Bad Math Games - Page 2</title>
+    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/Page2.css">
+    <link rel="icon" type="image/x-icon" href="/images/b.png">
 
 </head>
 
 <body>
+
     <header>
-
-        <!-- includes nav -->
         <div data-include="site_components/nav.html"></div>
-        <link rel="stylesheet" href="css/Page2.css">
-
     </header>
 
-
     <main>
-        <div id="AddSpace">
+        <div class="page2-layout">
+            <aside class="ad-box">
+                <h2> Ad Box</h2>
+                <p>Buy our premium package!</p>
+                <img src="images/ad_placeholder.png" alt="Ad Placeholder">
+            </aside>
+            <section class="game-display-box">
+                <div class="game-placeholder"></div>
+                <h2>Featured Game Here</h2>
 
+                <div class="game-meta">
+                    <div>Genre:<br><span id="game-genre">N/A</span></div>
+                    <div>Last Updated:<br><span id="game-updated">N/A</span></div>
+                    <div>Release:<br><span id="game-release">N/A</span></div>
+                    <div>Platform:<br><span id="game-platform">N/A</span></div>
+                </div>
+                <div class="game-instructions">
+                    <h3>Instructions:</h3>
+                    <p id="game-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                        in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                </div>
+            </section>
+            <aside class="suggested-games-grid">
+                <h2>More Games</h2>
+                <!-- Let's make the games load in randomly later -->
+                <div class="suggested-game-item"><img src="images/Salt Salt thumbnail.png" alt="Salt Salt">
+                    <p>Salt Salt</p>
+                </div>
+                <div class="suggested-game-item"><img src="images/Goose Life game thum.png" alt="Goose Life">
+                    <p>Goose Life</p>
+                </div>
+                <div class="suggested-game-item"><img src="images/Walk game thumbnail.png" alt="Walk Game">
+                    <p>Walk Game</p>
+                </div>
+            </aside>
         </div>
-
-        <div id="GameName">
-            <h1>Game name.</h1>
-        </div>
-
-        <div id="GameDesc">
-            <p>Description of game.</p>
-        </div>
-
-        <div id="Instuctions">
-            <p>Instructions of game.</p>
-        </div>
-
-        <div id="GameGrid">
-
-        </div>
-
-
-        <a href="index.html">Take me to Main Page nerd</a>
     </main>
 
+    <footer data-include="site_components/footer.html"></footer>
 
-
-
-    <footer></footer>
+    <script src="js/include.js"></script>
 </body>
-
-<script src="js/Page2.js"></script>
-<script src="js/include.js"></script>
-
 
 </html>
