@@ -1,0 +1,50 @@
+{
+  "pong": {
+    "title": "Multi Level Pong",
+    "genre": "Arcade",
+    "updated": "2026-03-31",
+    "release": "2026-03-31",
+    "platform": "Browser",
+    "instructions": "Pong, but make it chaos. Play solo, head to head, or go full 4 player mayhem. Choose your mode and survive. Player 1: W/S, Player 2: Up/Down, Player 3: TBD, Player 4: TBD. First to 10 wins."
+  },
+  "ss": {
+    "title": "Salt Salt",
+    "genre": "Puzzle",
+    "updated": "2026-03-31",
+    "release": "2026-03-31",
+    "platform": "Browser",
+    "instructions": "Pour the salt into the correct container before time runs out. Sounds easy. It is not."
+  },
+  "gooselife": {
+    "title": "Goose Life",
+    "genre": "Adventure",
+    "updated": "2026-03-31",
+    "release": "2026-03-31",
+    "platform": "Browser",
+    "instructions": "Train your goose. Race other geese. Become the greatest goose. A Duck Life parody with absolutely no ducks."
+  },
+  "walk": {
+    "title": "Walk Game",
+    "genre": "Platformer",
+    "updated": "2026-03-31",
+    "release": "2026-03-31",
+    "platform": "Browser",
+    "instructions": "A 3D platformer where you walk. Use WASD to move, Space to jump. Try not to fall. You will fall."
+  },
+  "bcalc": {
+    "title": "Bad Calculator",
+    "genre": "Casual",
+    "updated": "2026-03-31",
+    "release": "2026-03-31",
+    "platform": "Browser",
+    "instructions": "A calculator that does things when you do calculations. What things? You'll find out. Try not to break it. You will break it."
+  },
+  "wbfg": {
+    "title": "Water Boy and Fire Girl",
+    "genre": "Puzzle Platformer",
+    "updated": "2026-03-31",
+    "release": "2026-03-31",
+    "platform": "Browser",
+    "instructions": "Two players, two elements, one goal. Water Boy can't touch fire, Fire Girl can't touch water. Work together to reach the exit. Player 1: WASD, Player 2: Arrow Keys."
+  }
+}

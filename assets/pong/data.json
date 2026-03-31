@@ -1,0 +1,8 @@
+{
+  "players": {
+    "p1": { "label": "P1", "color": "0xff0000" },
+    "p2": { "label": "P2", "color": "0x0000ff" },
+    "p3": { "label": "P3", "color": "0x00ff00" },
+    "p4": { "label": "P4", "color": "0xffff00" }
+  }
+}
