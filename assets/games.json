@@ -24,14 +24,14 @@
     "instructions": "Train your goose. Race other geese. Become the greatest goose. A Duck Life parody with absolutely no ducks."
   },
   "walk": {
-    "title": "Walk Game",
+    "title": "Walk",
     "genre": "Platformer",
     "updated": "2026-03-31",
     "release": "2026-03-31",
     "platform": "Browser",
     "instructions": "A 3D platformer where you walk. Use WASD to move, Space to jump. Try not to fall. You will fall."
   },
-  "bcalc": {
+  "bCalc": {
     "title": "Bad Calculator",
     "genre": "Casual",
     "updated": "2026-03-31",
@@ -39,7 +39,7 @@
     "platform": "Browser",
     "instructions": "A calculator that does things when you do calculations. What things? You'll find out. Try not to break it. You will break it."
   },
-  "wbfg": {
+  "BnG": {
     "title": "Water Boy and Fire Girl",
     "genre": "Puzzle Platformer",
     "updated": "2026-03-31",
