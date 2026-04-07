@@ -1,0 +1,8 @@
+{
+	"title": "Water Boy and Fire Girl",
+	"tagline": "A chaotic co-op puzzle platformer",
+	"controls": {
+		"p1": "WASD",
+		"p2": "Arrow Keys"
+	}
+}

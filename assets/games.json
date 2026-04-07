@@ -45,6 +45,6 @@
     "updated": "2026-03-31",
     "release": "2026-03-31",
     "platform": "Browser",
-    "instructions": "Two players, two elements, one goal. Water Boy can't touch fire, Fire Girl can't touch water. Work together to reach the exit. Player 1: WASD, Player 2: Arrow Keys."
+    "instructions": "A parody-style cooperative puzzle platformer where Water Boy is immune to water but instantly cooked by fire, and Fire Girl is immune to fire but instantly soaked out by water. Push buttons, trigger switches, ride moving platforms, and help each other reach your own exit doors. Player 1: WASD, Player 2: Arrow Keys."
   }
 }
