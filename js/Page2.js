@@ -108,3 +108,71 @@ onAuthStateChanged(auth, (user) => {
     }
   }
 });
+
+const gameThumbnails = {
+  bCalc: "images/Basic calculator icon.png",
+  pong: "images/POONG.png",
+  goose: "images/Goose Life game thum.png",
+  ss: "images/Salt Salt thumbnail.png",
+  walk: "images/Walk game thumbnail.png",
+  BnG: "images/Water Boy and Fire G.png",
+};
+
+const params = new URLSearchParams(window.location.search);
+const currentGameKey = params.get("game");
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+async function renderSuggestedGames() {
+  const container = document.querySelector(".suggested-games-grid");
+  if (!container) {
+    return;
+  }
+
+  const heading = container.querySelector("h2");
+
+  const response = await fetch("assets/games.json");
+  const gameData = await response.json();
+
+  const entries = Object.entries(gameData)
+    .filter(([key]) => key !== currentGameKey)
+    .map(([key, data]) => ({ key, ...data }));
+
+  const picks = shuffle(entries).slice(0, 3);
+
+  container.innerHTML = "";
+  if (heading) {
+    container.appendChild(heading);
+  } else {
+    const title = document.createElement("h2");
+    title.textContent = "More Games";
+    container.appendChild(title);
+  }
+
+  picks.forEach((game) => {
+    const card = document.createElement("a");
+    card.href = `Page2.html?game=${encodeURIComponent(game.key)}`;
+    card.className = "suggested-game-item suggested-game-link";
+
+    const img = document.createElement("img");
+    img.src = gameThumbnails[game.key] || "images/bad_math_games.png";
+    img.alt = game.title;
+
+    const label = document.createElement("p");
+    label.textContent = game.title;
+
+    card.appendChild(img);
+    card.appendChild(label);
+    container.appendChild(card);
+  });
+}
+
+renderSuggestedGames().catch((error) => {
+  console.error("Failed to render suggested games:", error);
+});
