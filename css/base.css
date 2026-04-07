@@ -130,6 +130,7 @@ input[type="text"]:focus-visible {
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    position: relative;
     padding-right: 0;
 }
 
@@ -164,6 +165,41 @@ input[type="text"]:focus-visible {
 
 .search-container button[type="submit"]:hover {
     background-color: #0b7dda;
+}
+
+.search-results {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: calc(100% - 76px);
+    max-height: 220px;
+    overflow-y: auto;
+    background: #ffffff;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    display: none;
+}
+
+.search-results.visible {
+    display: block;
+}
+
+.search-result-item {
+    width: 100%;
+    text-align: left;
+    border: 0;
+    background: #ffffff;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.search-result-item:hover,
+.search-result-item:focus-visible {
+    background: #e9f3ff;
+    outline: none;
 }
 
 .Loginbtn {
@@ -228,6 +264,11 @@ footer {
 
     .search-container input[type=text] {
         width: 70%;
+    }
+
+    .search-results {
+        width: calc(70% - 4px);
+        left: 14px;
     }
 
     .Loginbtn {

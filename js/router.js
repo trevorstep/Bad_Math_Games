@@ -4,7 +4,7 @@ const game = params.get('game');
 fetch('assets/games.json')
   .then(res => res.json())
   .then(gameData => {
-    const d = gameData[game];
+    const d = gameData[game] || gameData.bCalc;
     document.querySelector('h2').textContent = d.title;
     document.getElementById('game-genre').textContent = d.genre;
     document.getElementById('game-updated').textContent = d.updated;
