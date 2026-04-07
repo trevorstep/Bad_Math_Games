@@ -1,13 +1,26 @@
+async function includeHTML() {
+    const elements = document.querySelectorAll("[data-include]");
+    for (const el of elements) {
+        const file = el.getAttribute("data-include");
+        try {
+            const response = await fetch(file);
+            if (response.ok) {
+                const html = await response.text();
+                el.innerHTML = html;
+                if (file.includes("nav.html")) {
+                    initSiteSearch();
+                    document.dispatchEvent(new Event("navLoaded"));
+                }
+            } else {
+                el.innerHTML = `<p>Could not load ${file}</p>`;
+            }
+        } catch (e) {
+            el.innerHTML = `<p>Error loading ${file}</p>`;
+        }
+    }
+}
 
-document.querySelectorAll("[data-include]").forEach(async (el) => {
-  const file = el.getAttribute("data-include");
-  const html = await fetch(file).then((res) => res.text());
-  el.innerHTML = html;
-
-  if (file && file.includes("nav.html")) {
-    initSiteSearch();
-  }
-});
+document.addEventListener("DOMContentLoaded", includeHTML);
 
 function initSiteSearch() {
   const searchInput = document.getElementById("site-search");

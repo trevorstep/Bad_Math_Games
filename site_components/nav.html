@@ -3,13 +3,20 @@
         <li class="logo-container">
             <a href="index.html"><img src="images/bad_math_games.png" alt="Bad Math Games Logo"></a>
         </li>
+
+        <li class="mobile-auth-row">
+            <button class="Loginbtn" id="authButton-mobile">Login</button>
+            <span id="userDisplayName-mobile"></span>
+        </li>
+
         <li class="menu-toggle" id="mobile-menu-toggle">
-            <button aria-label="Toggle navigation menu">
+            <button aria-label="Toggle navigation menu" aria-expanded="false">
                 <span class="hamburger"></span>
                 <span class="hamburger"></span>
                 <span class="hamburger"></span>
             </button>
         </li>
+
         <li class="nav-items-wrapper" id="collapsible-menu">
             <ul class="nav-links">
                 <li><a class="active" href="index.html">Home</a></li>
@@ -25,6 +32,17 @@
                     </div>
                 </li>
             </ul>
+
+            <ul class="mobile-game-links" aria-label="Game links">
+                <li><a href="Page2.html?game=bCalc">Basic Calculator</a></li>
+                <li><a href="Page2.html?game=pong">Pong</a></li>
+                <li><a href="Page2.html?game=goose">Goose Life</a></li>
+                <li><a href="Page2.html?game=ss">Salt Salt</a></li>
+                <li><a href="Page2.html?game=walk">Walk Game</a></li>
+                <li><a href="Page2.html?game=BnG">Water Boy and Fire Girl</a></li>
+            </ul>
+
+            <!-- Desktop: search + auth -->
             <div class="nav-right">
                 <div class="search-container">
                     <label for="site-search" class="sr-only">Search games</label>
@@ -33,24 +51,24 @@
                     <button type="submit">Search</button>
                 </div>
                 <button class="Loginbtn" id="authButton">Login</button>
-                <span id="userDisplayName" style="display: none; color: white; margin-left: 10px;"></span>
+                <span id="userDisplayName"></span>
             </div>
         </li>
     </ul>
 </nav>
 
 <!-- Login/Signup Modal -->
-<div id="authModal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
-    <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 400px; text-align: center; border-radius: 8px;">
-        <span class="closeButton" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+<div id="authModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.4);">
+    <div style="background-color:#fefefe; margin:15% auto; padding:20px; border:1px solid #888; width:80%; max-width:400px; text-align:center; border-radius:8px;">
+        <span class="closeButton" style="color:#aaa; float:right; font-size:28px; font-weight:bold; cursor:pointer;">&times;</span>
         <h2>Login / Sign Up</h2>
         <form id="authForm">
-            <input type="text" id="authUsername" placeholder="Username (Sign Up Only)" style="width: 90%; padding: 10px; margin: 8px auto; border: 1px solid #ddd; border-radius: 4px;" autocomplete="username">
-            <input type="email" id="authEmail" placeholder="Email" style="width: 90%; padding: 10px; margin: 8px auto; border: 1px solid #ddd; border-radius: 4px;" autocomplete="email">
-            <input type="password" id="authPassword" placeholder="Password" style="width: 90%; padding: 10px; margin: 8px auto; border: 1px solid #ddd; border-radius: 4px;" autocomplete="current-password">
-            <button type="button" id="signInButton" style="background-color: #4CAF50; color: white; padding: 10px 20px; margin: 8px 5px; border: none; cursor: pointer; border-radius: 4px;">Sign In</button>
-            <button type="button" id="signUpButton" style="background-color: #008CBA; color: white; padding: 10px 20px; margin: 8px 5px; border: none; cursor: pointer; border-radius: 4px;">Sign Up</button>
-            <p id="authError" style="color: red; margin-top: 10px;"></p>
+            <input type="text" id="authUsername" placeholder="Username (Sign Up Only)" style="width:90%; padding:10px; margin:8px auto; border:1px solid #ddd; border-radius:4px; display:block;" autocomplete="username">
+            <input type="email" id="authEmail" placeholder="Email" style="width:90%; padding:10px; margin:8px auto; border:1px solid #ddd; border-radius:4px; display:block;" autocomplete="email">
+            <input type="password" id="authPassword" placeholder="Password" style="width:90%; padding:10px; margin:8px auto; border:1px solid #ddd; border-radius:4px; display:block;" autocomplete="current-password">
+            <button type="button" id="signInButton" style="background-color:#4CAF50; color:white; padding:10px 20px; margin:8px 5px; border:none; cursor:pointer; border-radius:4px;">Sign In</button>
+            <button type="button" id="signUpButton" style="background-color:#008CBA; color:white; padding:10px 20px; margin:8px 5px; border:none; cursor:pointer; border-radius:4px;">Sign Up</button>
+            <p id="authError" style="color:red; margin-top:10px;"></p>
         </form>
     </div>
 </div>

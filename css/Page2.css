@@ -61,28 +61,53 @@
     padding: 10px;
     border-radius: 8px;
     text-align: center;
+    border: 1px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .suggested-game-item img {
     max-width: 100%;
     height: auto;
     border-radius: 4px;
+    transition: transform 0.2s ease;
+}
+
+.suggested-game-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+    border-color: #4cae4c;
+}
+
+.suggested-game-item:hover img {
+    transform: scale(1.03);
+}
+
+.suggested-game-item:active {
+    transform: scale(0.98);
 }
 
 #mobile-warning {
-  display: none;
+    display: none;
 }
-
 
 @media screen and (max-width: 768px) {
     .page2-layout {
         grid-template-columns: 1fr;
     }
-    .ad-box, .game-display-box, .suggested-games-grid {
+
+    /* Hide ad on mobile */
+    .ad-box {
+        display: none;
+    }
+
+    .game-display-box {
         grid-column: 1 / -1;
     }
+
+    /* More Games: 1 column on mobile */
     .suggested-games-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-column: 1 / -1;
+        grid-template-columns: 1fr;
     }
 
     #mobile-warning { display: block; }
