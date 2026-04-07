@@ -14,12 +14,13 @@ class WalkScene extends Phaser.Scene {
     this.trackWidth = this.lanes * this.laneWidth;
     this.trackX = Math.floor((this.w - this.trackWidth) / 2);
 
-    this.rowHeight = 96;
-    this.rowGap = 28;
+    this.rowHeight = 124;
+    this.rowGap = 44;
     this.rowStride = this.rowHeight + this.rowGap;
     this.scrollSpeed = 220;
-    this.jumpDuration = 340;
-    this.jumpHeight = 36;
+    this.jumpDuration = 440;
+    this.jumpHeight = 56;
+    this.laneMoveDuration = 150;
 
     this.playerY = this.h - 120;
     this.playerLane = 1;
@@ -218,11 +219,16 @@ class WalkScene extends Phaser.Scene {
       return;
     }
 
-    this.tweens.add({
+    if (this.laneTween) {
+      this.laneTween.stop();
+      this.laneTween.remove();
+    }
+
+    this.laneTween = this.tweens.add({
       targets: [this.player, this.shadow],
       x: targetX,
-      duration: 85,
-      ease: 'Quad.Out'
+      duration: this.laneMoveDuration,
+      ease: 'Sine.InOut'
     });
   }
 
