@@ -17,7 +17,7 @@ fetch('assets/games.json')
 
     const container = document.getElementById('game-container');
     const scenes = {
-      pong: PongScene,
+      pong: [PongBootScene, PongScene],
       ss: SaltScene,
       walk: WalkScene,
       BnG: WBandFGScene,

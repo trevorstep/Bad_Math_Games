@@ -69,6 +69,11 @@
     border-radius: 4px;
 }
 
+#mobile-warning {
+  display: none;
+}
+
+
 @media screen and (max-width: 768px) {
     .page2-layout {
         grid-template-columns: 1fr;
@@ -79,4 +84,7 @@
     .suggested-games-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
+
+    #mobile-warning { display: block; }
+    #game-container { display: none; }
 }

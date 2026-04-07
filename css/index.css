@@ -18,7 +18,7 @@
     transform: scale(1.05);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 760px) {
     .image-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;

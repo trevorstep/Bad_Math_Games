@@ -1,11 +1,11 @@
 {
   "pong": {
-    "title": "Multi Level Pong",
+    "title": "Xtreme Pong",
     "genre": "Arcade",
     "updated": "2026-03-31",
     "release": "2026-03-31",
     "platform": "Browser",
-    "instructions": "Pong, but make it chaos. Play solo, head to head, or go full 4 player mayhem. Choose your mode and survive. Player 1: W/S, Player 2: Up/Down, Player 3: TBD, Player 4: TBD. First to 10 wins."
+    "instructions": "Pong, but make it chaos. Play head to head with your friends. Player 1: W/S, Player 2: Up/Down, Player 3: TBD, Player 4: TBD. First to 10 wins."
   },
   "ss": {
     "title": "Salt Salt",

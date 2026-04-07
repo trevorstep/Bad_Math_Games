@@ -3,30 +3,49 @@
         <li class="logo-container">
             <a href="index.html"><img src="images/bad_math_games.png" alt="Bad Math Games Logo"></a>
         </li>
-        <li class="nav-links">
-            <ul>
-                <li><a class="active" href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <button class="dropbtn" aria-expanded="false" aria-controls="games-dropdown-menu">Games</button>
-                    <div class="dropdown-content" id="games-dropdown-menu">
-                        <a href="Page2.html?game=bCalc">Basic Calculator</a>
-                        <a href="Page2.html?game=pong">Pong</a>
-                        <a href="Page2.html?game=goose">Goose Life</a>
-                        <a href="Page2.html?game=ss">Salt Salt</a>
-                        <a href="Page2.html?game=walk">Walk Game</a>
-                        <a href="Page2.html?game=BnG">Water Boy and Fire Girl</a>
-
-                    </div>
-                </li>
-            </ul>
+        <li>
+            <div class="nav-links">
+                <ul>
+                    <li><a class="active" href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <button class="dropbtn" aria-expanded="false" aria-controls="games-dropdown-menu">Games</button>
+                        <div class="dropdown-content" id="games-dropdown-menu">
+                            <a href="Page2.html?game=bCalc">Basic Calculator</a>
+                            <a href="Page2.html?game=pong">Pong</a>
+                            <a href="Page2.html?game=goose">Goose Life</a>
+                            <a href="Page2.html?game=ss">Salt Salt</a>
+                            <a href="Page2.html?game=walk">Walk Game</a>
+                            <a href="Page2.html?game=BnG">Water Boy and Fire Girl</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </li>
+
         <li class="nav-right">
             <div class="search-container">
                 <label for="site-search" class="sr-only">Search games</label>
-                <input type="text" placeholder="Search.." name="search" id="site-search">
+                <input type="text" placeholder="Search.." name="search" id="site-search" autocomplete="off">
                 <button type="submit">Search</button>
             </div>
-            <button class="Loginbtn">Login</button>
+            <button class="Loginbtn" id="authButton">Login</button>
+            <span id="userDisplayName" style="display: none; color: white; margin-left: 10px;"></span>
         </li>
     </ul>
 </nav>
+
+<!-- Login/Signup Modal -->
+<div id="authModal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+    <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 400px; text-align: center; border-radius: 8px;">
+        <span class="closeButton" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+        <h2>Login / Sign Up</h2>
+        <form id="authForm">
+            <input type="text" id="authUsername" placeholder="Username (Sign Up Only)" style="width: 90%; padding: 10px; margin: 8px auto; border: 1px solid #ddd; border-radius: 4px;" autocomplete="username">
+            <input type="email" id="authEmail" placeholder="Email" style="width: 90%; padding: 10px; margin: 8px auto; border: 1px solid #ddd; border-radius: 4px;" autocomplete="email">
+            <input type="password" id="authPassword" placeholder="Password" style="width: 90%; padding: 10px; margin: 8px auto; border: 1px solid #ddd; border-radius: 4px;" autocomplete="current-password">
+            <button type="button" id="signInButton" style="background-color: #4CAF50; color: white; padding: 10px 20px; margin: 8px 5px; border: none; cursor: pointer; border-radius: 4px;">Sign In</button>
+            <button type="button" id="signUpButton" style="background-color: #008CBA; color: white; padding: 10px 20px; margin: 8px 5px; border: none; cursor: pointer; border-radius: 4px;">Sign Up</button>
+            <p id="authError" style="color: red; margin-top: 10px;"></p>
+        </form>
+    </div>
+</div>
