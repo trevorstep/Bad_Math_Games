@@ -1,0 +1,248 @@
+/* Base Navigation Styles (Desktop First) */
+nav {
+    background-color: #333;
+    padding: 10px 20px;
+    color: white;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container img {
+    height: 50px; /* Adjust as needed */
+}
+
+.nav-items-wrapper {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Allows it to take available space */
+    justify-content: flex-end; /* Pushes nav-right to the right */
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-right: 20px; /* Space between nav links and search/auth */
+}
+
+.nav-links li {
+    margin-right: 15px;
+}
+
+.nav-links a, .dropbtn {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover, .dropbtn:hover,
+.nav-links a:focus-visible, .dropbtn:focus-visible { /* Added focus-visible for accessibility */
+    background-color: #555;
+    outline: 2px solid #ffd54f; /* Focus style */
+    outline-offset: 2px;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content { /* Added focus-within for keyboard accessibility */
+    display: block;
+}
+
+/* Search Container */
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.search-container input {
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+}
+
+.search-container button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.search-container button:hover, .search-container button:focus-visible {
+    background-color: #4cae4c;
+    outline: 2px solid #ffd54f;
+    outline-offset: 2px;
+}
+
+.Loginbtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Loginbtn:hover, .Loginbtn:focus-visible {
+    background-color: #0056b3;
+    outline: 2px solid #ffd54f;
+    outline-offset: 2px;
+}
+
+#userDisplayName {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+/* Hamburger Menu (Hidden by default on desktop) */
+.menu-toggle {
+    display: none;
+}
+
+.menu-toggle button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+}
+
+.hamburger {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) { /* Adjusted breakpoint for tablet/mobile */
+    .nav-list {
+        flex-wrap: wrap; /* Allow items to wrap */
+        justify-content: space-between;
+    }
+
+    .logo-container {
+        flex-grow: 1; /* Logo takes available space */
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger on mobile */
+    }
+
+    .nav-items-wrapper {
+        display: none; /* Hide collapsible menu by default */
+        flex-direction: column;
+        width: 100%;
+        background-color: #444; /* Slightly darker background for open menu */
+        position: absolute;
+        top: 70px; /* Below the nav bar */
+        left: 0;
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .nav-items-wrapper.active {
+        display: flex; /* Show when active */
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .nav-links li {
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-links a, .dropbtn {
+        display: block;
+        padding: 10px;
+        border-radius: 0;
+    }
+
+    .dropdown-content {
+        position: static; /* Allow dropdown content to flow naturally */
+        width: 100%;
+        box-shadow: none;
+        background-color: #555; /* Darker for sub-menu */
+    }
+
+    .dropdown-content a {
+        padding-left: 30px; /* Indent sub-menu items */
+        color: white;
+    }
+
+    .nav-right {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .search-container {
+        margin-bottom: 10px;
+        margin-right: 0;
+        width: 90%;
+    }
+
+    .search-container input {
+        flex-grow: 1;
+    }
+
+    .Loginbtn {
+        width: 90%;
+        margin-bottom: 10px;
+    }
+
+    #userDisplayName {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+}

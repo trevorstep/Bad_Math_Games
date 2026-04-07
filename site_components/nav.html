@@ -1,35 +1,39 @@
 <nav aria-label="Main navigation">
-    <ul>
+    <ul class="nav-list">
         <li class="logo-container">
             <a href="index.html"><img src="images/bad_math_games.png" alt="Bad Math Games Logo"></a>
         </li>
-        <li>
-            <div class="nav-links">
-                <ul>
-                    <li><a class="active" href="index.html">Home</a></li>
-                    <li class="dropdown">
-                        <button class="dropbtn" aria-expanded="false" aria-controls="games-dropdown-menu">Games</button>
-                        <div class="dropdown-content" id="games-dropdown-menu">
-                            <a href="Page2.html?game=bCalc">Basic Calculator</a>
-                            <a href="Page2.html?game=pong">Pong</a>
-                            <a href="Page2.html?game=goose">Goose Life</a>
-                            <a href="Page2.html?game=ss">Salt Salt</a>
-                            <a href="Page2.html?game=walk">Walk Game</a>
-                            <a href="Page2.html?game=BnG">Water Boy and Fire Girl</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+        <li class="menu-toggle" id="mobile-menu-toggle">
+            <button aria-label="Toggle navigation menu">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
         </li>
-
-        <li class="nav-right">
-            <div class="search-container">
-                <label for="site-search" class="sr-only">Search games</label>
-                <input type="text" placeholder="Search.." name="search" id="site-search" autocomplete="off">
-                <button type="submit">Search</button>
+        <li class="nav-items-wrapper" id="collapsible-menu">
+            <ul class="nav-links">
+                <li><a class="active" href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <button class="dropbtn" aria-expanded="false" aria-controls="games-dropdown-menu">Games</button>
+                    <div class="dropdown-content" id="games-dropdown-menu">
+                        <a href="Page2.html?game=bCalc">Basic Calculator</a>
+                        <a href="Page2.html?game=pong">Pong</a>
+                        <a href="Page2.html?game=goose">Goose Life</a>
+                        <a href="Page2.html?game=ss">Salt Salt</a>
+                        <a href="Page2.html?game=walk">Walk Game</a>
+                        <a href="Page2.html?game=BnG">Water Boy and Fire Girl</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <div class="search-container">
+                    <label for="site-search" class="sr-only">Search games</label>
+                    <input type="text" placeholder="Search.." name="search" id="site-search" autocomplete="off">
+                    <button type="submit">Search</button>
+                </div>
+                <button class="Loginbtn" id="authButton">Login</button>
+                <span id="userDisplayName" style="display: none; color: white; margin-left: 10px;"></span>
             </div>
-            <button class="Loginbtn" id="authButton">Login</button>
-            <span id="userDisplayName" style="display: none; color: white; margin-left: 10px;"></span>
         </li>
     </ul>
 </nav>

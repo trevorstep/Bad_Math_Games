@@ -12,6 +12,8 @@ import { signUp, signIn, logOut } from "./auth.js";
   const signInButton = document.getElementById("signInButton");
   const signUpButton = document.getElementById("signUpButton");
   const authErrorDisplay = document.getElementById("authError");
+  const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+  const collapsibleMenu = document.getElementById("collapsible-menu");
  
   // Function to show/hide the auth modal
   function toggleAuthModal(show) {
@@ -26,6 +28,13 @@ import { signUp, signIn, logOut } from "./auth.js";
       }
     }
   } 
+
+  // Event listener for mobile menu toggle
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener("click", () => {
+      if (collapsibleMenu) collapsibleMenu.classList.toggle("active");
+    });
+  }
 
   // Event listener for the main auth button (Login/Logout)
   if (authButton) {
