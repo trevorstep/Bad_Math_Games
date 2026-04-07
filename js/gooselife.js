@@ -6,6 +6,7 @@ class GooseScene extends Phaser.Scene {
     this.hunger = 100;
     this.timeLeft = 75;
     this.invulnerableUntil = 0;
+    this.lastBreadSfxAt = 0;
   }
 
   create() {
@@ -14,6 +15,7 @@ class GooseScene extends Phaser.Scene {
 
     this.cameras.main.setBackgroundColor("#7ecf8a");
     this.physics.world.setBounds(16, 16, width - 32, height - 32);
+    this.initSfx();
 
     this.drawMap(width, height);
     this.createTextures();
@@ -42,6 +44,10 @@ class GooseScene extends Phaser.Scene {
       this.score += 10;
       this.hunger = Math.min(100, this.hunger + 18);
       this.spawnBread();
+      if (this.time.now - this.lastBreadSfxAt > 60) {
+        this.playSfx("bread");
+        this.lastBreadSfxAt = this.time.now;
+      }
       this.updateHud();
     });
 
@@ -55,6 +61,7 @@ class GooseScene extends Phaser.Scene {
       this.goose.setTint(0xff8f8f);
       this.time.delayedCall(180, () => this.goose.clearTint());
       this.goose.setVelocity(Phaser.Math.Between(-260, 260), Phaser.Math.Between(-260, 260));
+      this.playSfx("hit");
       this.updateHud();
     });
 
@@ -226,8 +233,76 @@ class GooseScene extends Phaser.Scene {
     this.messageText.setText(message);
     if (won) {
       this.goose.setTint(0xb9ff8c);
+      this.playSfx("win");
     } else {
       this.goose.setTint(0xff9b9b);
+      this.playSfx("lose");
+    }
+  }
+
+  initSfx() {
+    this.audioContext = this.sound && this.sound.context ? this.sound.context : null;
+    if (!this.audioContext) {
+      return;
+    }
+
+    const unlock = () => {
+      if (this.audioContext.state === "suspended") {
+        this.audioContext.resume();
+      }
+    };
+
+    this.input.once("pointerdown", unlock);
+    this.input.keyboard.once("keydown", unlock);
+  }
+
+  tone(freq, duration, volume, type, offset = 0, toFreq = freq) {
+    if (!this.audioContext || this.audioContext.state === "suspended") {
+      return;
+    }
+
+    const when = this.audioContext.currentTime + offset;
+    const osc = this.audioContext.createOscillator();
+    const gain = this.audioContext.createGain();
+
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, when);
+    osc.frequency.linearRampToValueAtTime(toFreq, when + duration);
+
+    gain.gain.setValueAtTime(0.0001, when);
+    gain.gain.exponentialRampToValueAtTime(Math.max(0.0002, volume), when + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001, when + duration);
+
+    osc.connect(gain);
+    gain.connect(this.audioContext.destination);
+    osc.start(when);
+    osc.stop(when + duration + 0.01);
+  }
+
+  playSfx(kind) {
+    if (!this.audioContext) {
+      return;
+    }
+
+    if (kind === "bread") {
+      this.tone(760, 0.08, 0.03, "triangle", 0, 920);
+      return;
+    }
+
+    if (kind === "hit") {
+      this.tone(220, 0.13, 0.05, "square", 0, 140);
+      return;
+    }
+
+    if (kind === "win") {
+      this.tone(520, 0.11, 0.04, "triangle", 0, 620);
+      this.tone(720, 0.13, 0.04, "triangle", 0.12, 900);
+      return;
+    }
+
+    if (kind === "lose") {
+      this.tone(310, 0.12, 0.04, "sawtooth", 0, 240);
+      this.tone(240, 0.18, 0.035, "sawtooth", 0.11, 160);
     }
   }
 }

@@ -12,6 +12,7 @@ class SaltScene extends Phaser.Scene {
     this.spawnedSalt = 0;
     this.totalSaltToSpawn = 170;
     this.gameEnded = false;
+    this.lastCatchSfxAt = 0;
   }
 
   create() {
@@ -21,6 +22,7 @@ class SaltScene extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, width, height);
     this.physics.world.gravity.y = 700;
     this.cameras.main.setBackgroundColor("#f4f0e4");
+    this.initSfx();
 
     this.createTextures();
     this.drawBackdrop(width, height);
@@ -213,6 +215,7 @@ class SaltScene extends Phaser.Scene {
       this.lineGraphics.lineStyle(6, 0x324155, 1);
       this.lineGraphics.beginPath();
       this.lineGraphics.moveTo(pointer.x, pointer.y);
+      this.playSfx("draw");
       this.addInkNode(pointer.x, pointer.y);
     });
 
@@ -292,6 +295,10 @@ class SaltScene extends Phaser.Scene {
 
     salt.destroy();
     this.caughtSalt += 1;
+    if (this.time.now - this.lastCatchSfxAt > 45) {
+      this.playSfx("catch");
+      this.lastCatchSfxAt = this.time.now;
+    }
     this.updateHud();
 
     if (this.caughtSalt >= this.targetSalt && !this.gameEnded) {
@@ -319,8 +326,77 @@ class SaltScene extends Phaser.Scene {
 
     if (won) {
       this.cameras.main.flash(260, 180, 240, 180);
+      this.playSfx("win");
     } else {
       this.cameras.main.shake(220, 0.004);
+      this.playSfx("lose");
+    }
+  }
+
+  initSfx() {
+    this.audioContext = this.sound && this.sound.context ? this.sound.context : null;
+    if (!this.audioContext) {
+      return;
+    }
+
+    const unlock = () => {
+      if (this.audioContext.state === "suspended") {
+        this.audioContext.resume();
+      }
+    };
+
+    this.input.once("pointerdown", unlock);
+    this.input.keyboard.once("keydown", unlock);
+  }
+
+  tone(freq, duration, volume, type, offset = 0, toFreq = freq) {
+    if (!this.audioContext || this.audioContext.state === "suspended") {
+      return;
+    }
+
+    const when = this.audioContext.currentTime + offset;
+    const osc = this.audioContext.createOscillator();
+    const gain = this.audioContext.createGain();
+
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, when);
+    osc.frequency.linearRampToValueAtTime(toFreq, when + duration);
+
+    gain.gain.setValueAtTime(0.0001, when);
+    gain.gain.exponentialRampToValueAtTime(Math.max(0.0002, volume), when + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001, when + duration);
+
+    osc.connect(gain);
+    gain.connect(this.audioContext.destination);
+    osc.start(when);
+    osc.stop(when + duration + 0.01);
+  }
+
+  playSfx(kind) {
+    if (!this.audioContext) {
+      return;
+    }
+
+    if (kind === "draw") {
+      this.tone(280, 0.05, 0.025, "triangle", 0, 340);
+      return;
+    }
+
+    if (kind === "catch") {
+      this.tone(820, 0.045, 0.02, "sine", 0, 900);
+      return;
+    }
+
+    if (kind === "win") {
+      this.tone(500, 0.1, 0.035, "triangle", 0, 620);
+      this.tone(700, 0.11, 0.035, "triangle", 0.1, 860);
+      this.tone(900, 0.12, 0.03, "triangle", 0.21, 1100);
+      return;
+    }
+
+    if (kind === "lose") {
+      this.tone(280, 0.1, 0.04, "sawtooth", 0, 210);
+      this.tone(210, 0.16, 0.035, "sawtooth", 0.1, 140);
     }
   }
 }
